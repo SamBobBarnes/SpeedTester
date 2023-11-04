@@ -1,17 +1,16 @@
-#!/bin/bash
-MQTT_HOST=${MQTT_HOST:-localhost}
-MQTT_ID=${MQTT_ID:-speedtest2mqtt}
-MQTT_TOPIC=${MQTT_TOPIC:-speedtest}
-MQTT_OPTIONS=${MQTT_OPTIONS:-"-r"}
-MQTT_USER=${MQTT_USER:-user}
-MQTT_PASS=${MQTT_PASS:-pass}
 
-file=~/ookla.json
+# MQTT_HOST=${MQTT_HOST:-localhost}
+# MQTT_ID=${MQTT_ID:-speedtest2mqtt}
+# MQTT_TOPIC=${MQTT_TOPIC:-speedtest}
+# MQTT_OPTIONS=${MQTT_OPTIONS:-"-r"}
+# MQTT_USER=${MQTT_USER:-user}
+# MQTT_PASS=${MQTT_PASS:-pass}
 
+# file=~/ookla.json
+echo "Speedtest has been started... "
 echo "$(date -Iseconds) starting speedtest"
 
-ping 8.8.8.8
-# speedtest --accept-license --accept-gdpr -f json-pretty 
+speedtest --accept-license -f json-pretty | jq
 # speedtest --accept-license --accept-gdpr -f json-pretty > ${file}
 
 # downraw=$(jq -r '.download.bandwidth' ${file})

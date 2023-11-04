@@ -5,7 +5,7 @@ services:
     #   - emqx
     image: sambobbarnes/speedtest:latest
     container_name: speedtest
-    restart: unless-stopped
+    # restart: unless-stopped
     environment:
       - MQTT_HOST=localhost
       - MQTT_ID=speedtest

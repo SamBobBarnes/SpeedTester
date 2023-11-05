@@ -3,11 +3,11 @@ services:
   speedtest:
     depends_on:
       - emqx
-    image: sambobbarnes/speedtest:latest
+    image: sambobbarnes/SpeedTester:latest
     container_name: speedtest
     # restart: unless-stopped
     environment:
-      - MQTT_HOST=127.0.0.1
+      - MQTT_HOST=emqx
       - MQTT_ID=speedtest
       - MQTT_TOPIC=speedtest
       - MQTT_OPTIONS=-r

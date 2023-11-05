@@ -1,5 +1,13 @@
 version: '3.8'
 services:
+  speedtest:
+    depends_on:
+      - emqx
+    image: sambobbarnes/speedtester:latest
+    container_name: speedtest
+    # restart: unless-stopped
+    networks:
+      - speedtest
 
   # reporter:
   #   depends_on:
@@ -14,6 +22,21 @@ services:
   #     - MQTT_TOPIC=speedtest
   #     - MQTT_USER=speedtest
   #     - MQTT_PASS=speedtest123!
+
+  influxdb:
+    image: influxdb:alpine
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=speedtest
+      - DOCKER_INFLUXDB_INIT_PASSWORD=speedtest123!
+      - DOCKER_INFLUXDB_INIT_ORG=speedtest
+      - DOCKER_INFLUXDB_INIT_BUCKET=speedtests
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=speedtest123!
 
   emqx:
     image: emqx:latest
@@ -37,6 +60,7 @@ volumes:
     name: foo-emqx-etc
   vol-emqx-log:
     name: foo-emqx-log
+  influxdb:
 
 networks:
   speedtest:

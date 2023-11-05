@@ -6,7 +6,7 @@ RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/scr
 RUN apt-get install speedtest
 RUN apt-get install jq -y
 RUN apt install mosquitto mosquitto-clients -y
-RUN apt-get install cron -y
+RUN apt-get install influxdb-client -y
 
 COPY speedtest.sh /opt/
 

@@ -1,13 +1,13 @@
 version: '3.8'
 services:
   speedtest:
-    # depends_on:
-    #   - emqx
+    depends_on:
+      - emqx
     image: sambobbarnes/speedtest:latest
     container_name: speedtest
     # restart: unless-stopped
     environment:
-      - MQTT_HOST=localhost
+      - MQTT_HOST=127.0.0.1
       - MQTT_ID=speedtest
       - MQTT_TOPIC=speedtest
       - MQTT_OPTIONS=-r
@@ -16,20 +16,20 @@ services:
     networks:
       - speedtest
 
-  # emqx:
-  #   image: emqx:latest
-  #   restart: always
-  #   ports:
-  #     - 18083:18083
-  #     - 1833:1833
-  #   environment:
-  #     EMQX_NAME: speedtest
-  #   volumes:
-  #     - vol-emqx-data:/opt/emqx/data
-  #     - vol-emqx-etc:/opt/emqx/etc
-  #     - vol-emqx-log:/opt/emqx/log
-  #   networks:
-  #     - speedtest
+  emqx:
+    image: emqx:latest
+    restart: always
+    ports:
+      - 18083:18083
+      - 1833:1833
+    environment:
+      EMQX_NAME: speedtest
+    volumes:
+      - vol-emqx-data:/opt/emqx/data
+      - vol-emqx-etc:/opt/emqx/etc
+      - vol-emqx-log:/opt/emqx/log
+    networks:
+      - speedtest
 
 volumes:
   vol-emqx-data:

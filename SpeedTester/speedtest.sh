@@ -11,7 +11,6 @@ echo "Speedtest has been started... \n"
 echo "$(date -Iseconds) starting speedtest \n"
 
 speedtest --accept-license -f json-pretty > ${file}
-# speedtest --help
 
 echo "Speedtest finished \n"
 

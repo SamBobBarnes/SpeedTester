@@ -1,8 +1,8 @@
 build:
-	cd SpeedtestContainer && docker build -t sambobbarnes/speedtest .
+	cd SpeedTester && docker build -t sambobbarnes/SpeedTester .
 
 test:
-	cd SpeedtestContainer && docker build -t sambobbarnes/speedtest . && cd .. && docker compose up
+	cd SpeedTester && docker build -t sambobbarnes/SpeedTester . && cd .. && docker compose up
 
 test-d:
-	cd SpeedtestContainer && docker build -t sambobbarnes/speedtest . && cd .. && docker compose up -d
+	cd SpeedTester && docker build -t sambobbarnes/SpeedTester . && cd .. && docker compose up -d

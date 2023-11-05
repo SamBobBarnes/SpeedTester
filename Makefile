@@ -1,8 +1,11 @@
 build:
-	cd SpeedTester && docker build -t sambobbarnes/SpeedTester .
+	cd SpeedTester && docker build -t sambobbarnes/speedtester .
 
 test:
-	cd SpeedTester && docker build -t sambobbarnes/SpeedTester . && cd .. && docker compose up
+	cd SpeedTester && docker build -t sambobbarnes/speedtester . && cd .. && docker compose up
 
 test-d:
-	cd SpeedTester && docker build -t sambobbarnes/SpeedTester . && cd .. && docker compose up -d
+	cd SpeedTester && docker build -t sambobbarnes/speedtester . && cd .. && docker compose up -d
+
+run-test:
+	cd SpeedTester && docker build -t sambobbarnes/speedtester . && cd .. && docker run -d --network="speedtest" --name=speedtest  sambobbarnes/speedtester

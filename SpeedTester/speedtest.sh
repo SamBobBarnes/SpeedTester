@@ -1,10 +1,10 @@
-
-MQTT_HOST=${MQTT_HOST:-localhost}
-MQTT_ID=${MQTT_ID:-speedtest2mqtt}
-MQTT_TOPIC=${MQTT_TOPIC:-speedtest}
-MQTT_OPTIONS=${MQTT_OPTIONS:-"-r"}
-MQTT_USER=${MQTT_USER:-user}
-MQTT_PASS=${MQTT_PASS:-pass}
+#!/bin/bash
+MQTT_HOST=emqx
+MQTT_ID=speedtest
+MQTT_TOPIC=speedtest
+MQTT_OPTIONS=-r
+MQTT_USER=speedtest
+MQTT_PASS=speedtest123!
 
 file=~/ookla.json
 echo "Speedtest has been started... \n"

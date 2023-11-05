@@ -6,9 +6,11 @@ RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/scr
 RUN apt-get install speedtest
 RUN apt-get install jq -y
 RUN apt install mosquitto mosquitto-clients -y
+RUN apt-get install cron -y
 
 COPY speedtest.sh /opt/
 
-RUN chmod +x /opt/speedtest.sh
+RUN chmod 0744 /opt/speedtest.sh
 
-ENTRYPOINT /opt/speedtest.sh
+
+ENTRYPOINT [ "/opt/speedtest.sh" ]

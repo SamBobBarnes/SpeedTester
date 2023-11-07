@@ -1,27 +1,26 @@
 version: '3.8'
 services:
-  speedtest:
+  speedtester:
     depends_on:
       - influxdb
     image: sambobbarnes/speedtester:latest
-    container_name: speedtest
-    # restart: unless-stopped
+    container_name: speedtester
     networks:
       - speedtest
 
-#   reporter:
-#     depends_on:
-#       - influxdb
-#     image: sambobbarnes/speedtestreporter:latest
-#     container_name: reporter
-#     networks:
-#       - speedtest
-#     environment:
-#       - MQTT_HOST=emqx
-#       - MQTT_ID=speedtest
-#       - MQTT_TOPIC=speedtest
-#       - MQTT_USER=speedtest
-#       - MQTT_PASS=speedtest123!
+   reporter:
+     depends_on:
+       - influxdb
+     image: sambobbarnes/speedtestreporter:latest
+     container_name: reporter
+     networks:
+       - speedtest
+     environment:
+       - MQTT_HOST=emqx
+       - MQTT_ID=speedtest
+       - MQTT_TOPIC=speedtest
+       - MQTT_USER=speedtest
+       - MQTT_PASS=speedtest123!
 
   influxdb:
     image: influxdb:alpine

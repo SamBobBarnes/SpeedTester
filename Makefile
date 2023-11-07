@@ -8,4 +8,4 @@ test-d:
 	cd SpeedTester && docker build -t sambobbarnes/speedtester . && cd .. && docker compose up -d
 
 run-test:
-	cd SpeedTester && docker build -t sambobbarnes/speedtester . && cd .. && docker compose up -d speedtest
+	cd SpeedTester && docker build -t sambobbarnes/speedtester . && cd .. && docker compose up speedtest

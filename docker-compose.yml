@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   speedtest:
-    depends_on:
-      - emqx
+#    depends_on:
+#      - emqx
     image: sambobbarnes/speedtester:latest
     container_name: speedtest
     # restart: unless-stopped
@@ -25,6 +25,7 @@ services:
 
   influxdb:
     image: influxdb:alpine
+    container_name: influxdb
     ports:
       - "8086:8086"
     volumes:
@@ -37,6 +38,8 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=speedtests
       - DOCKER_INFLUXDB_INIT_RETENTION=1w
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=speedtest123!
+    networks:
+      - speedtest
 
   emqx:
     image: emqx:latest

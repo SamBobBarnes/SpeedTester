@@ -4,7 +4,13 @@ test:
 test-d:
 	cd SpeedTester && docker build -t sambobbarnes/speedtester . && cd .. && docker compose up -d
 
-
+# Reporter
+reporter-build:
+	cd SpeedTestReporter && docker build -t sambobbarnes/speedtestreporter .
+reporter-test:
+	cd SpeedTestReporter && docker build -t sambobbarnes/speedtestreporter . && cd .. && docker compose up reporter
+report:
+	docker compose up reporter
 
 # Speedtester
 speedtester-build:

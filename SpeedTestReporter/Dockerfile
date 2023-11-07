@@ -1,5 +1,7 @@
 FROM node:current-alpine
 
+COPY . .
 
+RUN npm ci
 
-ENTRYPOINT /opt/report.sh
+CMD npm run start

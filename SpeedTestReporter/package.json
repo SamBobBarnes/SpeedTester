@@ -2,13 +2,17 @@
   "name": "speedtestreporter",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Samuel Barnes",
+  "license": "MIT",
   "dependencies": {
-    "mqtt": "^5.1.4"
+    "@influxdata/influxdb-client": "^1.33.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
   }
 }

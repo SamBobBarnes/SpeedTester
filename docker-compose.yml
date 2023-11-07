@@ -1,35 +1,29 @@
 version: '3.8'
-services:
-  speedtester:
-    depends_on:
+services: 
+  speedtester: 
+    depends_on: 
       - influxdb
     image: sambobbarnes/speedtester:latest
     container_name: speedtester
-    networks:
+    networks: 
       - speedtest
 
-   reporter:
-     depends_on:
-       - influxdb
-     image: sambobbarnes/speedtestreporter:latest
-     container_name: reporter
-     networks:
-       - speedtest
-     environment:
-       - MQTT_HOST=emqx
-       - MQTT_ID=speedtest
-       - MQTT_TOPIC=speedtest
-       - MQTT_USER=speedtest
-       - MQTT_PASS=speedtest123!
+  reporter: 
+    depends_on: 
+      - influxdb
+    image: sambobbarnes/speedtestreporter:latest
+    container_name: reporter
+    networks: 
+      - speedtest
 
-  influxdb:
+  influxdb: 
     image: influxdb:alpine
     container_name: influxdb
-    ports:
+    ports: 
       - "8086:8086"
-    volumes:
+    volumes: 
       - influxdb:/var/lib/influxdb2
-    environment:
+    environment: 
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=speedtest
       - DOCKER_INFLUXDB_INIT_PASSWORD=speedtest123!
@@ -37,11 +31,11 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=speedtests
       - DOCKER_INFLUXDB_INIT_RETENTION=1w
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=speedtest123!
-    networks:
+    networks: 
       - speedtest
 
-volumes:
+volumes: 
   influxdb:
 
-networks:
+networks: 
   speedtest:
